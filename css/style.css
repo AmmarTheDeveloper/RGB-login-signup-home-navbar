@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;
+
+}
+
+:root {
+
+    --rgbBg: linear-gradient(45deg, crimson, blue, cyan, lime);
+
+}
+
+.btn {
+
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    padding: 7px 20px;
+    background: linear-gradient(45deg, crimson, blue);
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    transition: border-color 0.3s ease;
+
+}
+
+.btn:hover {
+    border: 2px solid;
+    border-color: darkblue;
+}
+
+.highlight-text {
+    background-clip: text;
+    color: transparent;
+    background: linear-gradient(45deg, crimson, blue);
+    -webkit-background-clip: text;
+}
+

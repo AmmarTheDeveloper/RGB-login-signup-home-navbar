@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+
+}
+
+.container {
+
+    --bg: linear-gradient(-45deg, crimson, blue, cyan, lime);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../images/bg.jpg'), var(--bg);
+    background-position: center;
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    animation: animate 2s linear infinite;
+
+
+}
+
+@keyframes animate {
+    100% {
+
+        --bg: linear-gradient(45deg, crimson, blue, cyan, lime);
+
+    }
+}
+
+.form {
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    width: 400px;
+    max-width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    margin-inline: 5px;
+
+}
+
+.form .image {
+
+    text-align: center;
+
+}
+
+.form .heading {
+
+    margin: 10px 0;
+
+}
+
+.form img {
+
+    width: 200px;
+    max-width: 100%;
+}
+
+.form input,
+.popup button {
+
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    background: whtie;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.9);
+    color: black;
+    padding-inline: 10px;
+
+}
+
+.form .input {
+
+    height: fit-content;
+    margin: 10px 0;
+    padding: 2px;
+    border-radius: 5px;
+    overflow: hidden;
+    animation: animate 1s linear infinite;
+    background-image: linear-gradient(45deg, crimson, blue, cyan, lime);
+
+}
+
+.form .link {
+
+    text-align: right;
+    margin: 10px 0;
+
+}
+
+.link a {
+
+    color: blue;
+
+}
+
+
+.form input[type=submit],
+.popup button,
+.rgb-btn {
+
+    background: linear-gradient(45deg, crimson, blue);
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+
+    transition: border-color 0.3s ease;
+}
+
+.form input[type=submit]:hover,
+.form input[type=submit]:focus,
+.rgb-btn:hover,
+.rgb-btn:focus,
+.popup button:hover,
+.popup button:focus {
+
+    border: 2px solid;
+    border-color: darkblue;
+
+}
+
+.popup-container {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+
+}
+
+.popup-container .popup {
+
+    background: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    width: 400px;
+    animation: animate2 0.3s linear;
+
+}
+
+.popup-container .popup p {
+
+    font-weight: 500;
+    font-size: 20px;
+    background-clip: text;
+    color: transparent;
+    background: linear-gradient(45deg, crimson, blue);
+    -webkit-background-clip: text;
+
+}
+
+.popup-container .popup button {
+
+    max-width: 250px;
+    margin: 10px 0;
+
+}
+
+.inactive {
+
+    display: none;
+
+}
+
+@keyframes animate2 {
+    0% {
+
+        scale: 0;
+
+    }
+
+    100% {
+
+        scale: 1;
+
+    }
+}
+
+/* file design here */
+.file-container {
+
+    position: relative;
+
+}
+
+.file-container input[type=file] {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    overflow: hidden;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+
+}
+
+.file-container .btn {
+
+    width: 100%;
+    cursor: pointer;
+
+}
+
+.form .two-input {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.form .two-input .child {
+    flex-grow: 1;
+    flex-basis: 200px;
+}
+
+.center {
+    text-align: center;
+}
