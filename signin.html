@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/form.css">
+
+    <title>signin</title>
+</head>
+
+<body>
+
+    <div class="popup-container inactive">
+        <div class="popup">
+            <p class="text">
+
+            </p>
+            <button type="button" class="cancel">close</button>
+        </div>
+    </div>
+    <div class="container">
+        <form class="form" action="/signin" method="post">
+            <div class="image">
+                <img src="./images/user-img.png" alt="">
+                <h3 class="heading">Sign in Here</h3>
+            </div>
+            <div class="input">
+                <input type="email" name="email" placeholder="email">
+            </div>
+            <div class="input">
+                <input type="password" name="password" autocomplete="off" placeholder="password">
+            </div>
+
+            <div class="link">
+                Don't have an account ? <a href="/signup">Signup </a>
+                <div class="link">
+                    Signin as <a href="/user">Admin</a>
+                </div>
+            </div>
+            <div class="link">
+                Signin as <a href="/user">Student</a>
+            </div>
+
+            <input type="submit" value="signin">
+        </form>
+    </div>
+
+    <script src="./js/form.js"></script>
+    <script>
+
+        const form = document.querySelector( '.form' )
+
+        form.onsubmit = ( e ) => {
+
+            let email = form.querySelector( 'input[name=email]' ).value.trim()
+            let password = form.querySelector( 'input[name=password]' ).value.trim()
+            let popupContainer = document.querySelector( '.popup-container.inactive' )
+
+            let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+            if ( !regex.test( email ) ) {
+
+                popupContainer.style.display = 'flex'
+                popupContainer.querySelector( '.text' ).innerText = 'please fill email field properly'
+                return false
+
+            } else if ( password.length < 4 ) {
+
+                popupContainer.style.display = 'flex'
+                popupContainer.querySelector( '.text' ).innerText = 'Please fill password properly (must password have minimum length 5)'
+                return false
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>

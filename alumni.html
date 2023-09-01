@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- own css file link  -->
+    <style>
+        .container {
+            padding-top: 70px;
+            padding-bottom: 20px;
+            min-height: 100vh;
+        }
+
+        .form {
+
+            width: 600px !important;
+
+        }
+    </style>
+    <link rel="stylesheet" href="./css/form.css">
+	<link rel="stylesheet" href="./css/navbar.css">
+	<link rel="stylesheet" href="./css/style.css">
+	
+    <title>signup</title>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">
+            TechSkills
+        </div>
+        <div class="links">
+            <a href="/" class="">
+                home
+            </a>
+            <a href="/alumni" class="">
+                alumni
+            </a>
+            <a href="" class="">
+                about
+            </a>
+            <a href="" class="">
+                services
+            </a>
+            <a href="" class="">
+                contact us
+            </a>
+            <form action="/logout" method="post">
+                <input type="hidden" name="message" value="logout">
+                <input class="btn" type="submit" value="Logout">
+            </form>
+        </div>
+        <div class="menu">
+            <div class="line line-1"></div>
+            <div class="line line-2"></div>
+            <div class="line line-3"></div>
+        </div>
+    </div>
+
+    <div class="popup-container inactive">
+        <div class="popup">
+            <p class="text">
+
+            </p>
+            <button type="button" class="cancel">close</button>
+        </div>
+    </div>
+
+    <!-- < if(message !=null){ %>
+        <div class="popup-container">
+            <div class="popup">
+                <p>
+                = message %>
+                </p>
+                <button type="button" class="cancel">close</button>
+            </div>
+        </div>
+        <} %> -->
+
+    <div class="container">
+        <form class="form" action="/alumni" method="post" enctype="multipart/form-data">
+            <div class="image">
+                <img src="./images/user-img.png">
+                <h3 class="heading">Sign up Here</h3>
+            </div>
+            <label>Enter your name</label>
+            <div class="input">
+                <input type="text" readonly name="name" value="ammar" placeholder="username">
+            </div>
+            <label>Enter your email</label>
+            <div class="input">
+                <input type="email" name="email" readonly value="ammar@gmail.com" placeholder="email">
+            </div>
+            <label>Enter your phone number</label>
+            <div class="input">
+                <input type="number" readonly value="919892564710" name="number" placeholder="phone number">
+            </div>
+            <label>Enter year of academy joining</label>
+            <div class="input">
+                <input type="date" name="academy_joining_date">
+            </div>
+            <label>Enter year of company joining</label>
+            <div class="input">
+                <input type="date" name="company_joining_date">
+            </div>
+            <label>
+                Enter company name
+            </label>
+            <div class="input">
+                <input type="text" placeholder="company name" name="company_name">
+            </div>
+            <div class="two-input">
+                <div class="input child file-container">
+                    <input type="file" name="image">
+                    <button type="button" class="btn">upload image</button>
+                </div>
+                <input type="submit" class="child" value="upload alumni">
+            </div>
+        </form>
+    </div>
+    <script src="./js/form.js"></script>
+    <script>
+        const form = document.querySelector( '.form' )
+        let academy_joining_date = form.querySelector( 'input[name=academy_joining_date]' )
+        let company_joining_date = form.querySelector( 'input[name=company_joining_date]' )
+        let today = new Date()
+        let year = today.getFullYear()
+        let month = today.getMonth()
+        let day = today.getDate()
+        month = ( month < 10 ) ? '0' + month : month
+        day = ( day < 10 ) ? '0' + day : day
+        let maxDay = `${ year }-${ month }-${ day }`
+        academy_joining_date.setAttribute( 'max', maxDay )
+        company_joining_date.setAttribute( 'max', maxDay )
+        academy_joining_date.setAttribute( 'min', '2010-01-01' )
+        company_joining_date.setAttribute( 'min', '2010-01-01' )
+
+        form.onsubmit = ( e ) => {
+
+            let name = form.querySelector( 'input[name=name]' ).value.trim()
+            let email = form.querySelector( 'input[name=email]' ).value.trim()
+            let number = form.querySelector( 'input[name=number]' ).value.trim()
+            let company_name = form.querySelector( 'input[name=company_name]' ).value.trim()
+            let image = form.querySelector( 'input[name=image]' ).files
+            let popupContainer = document.querySelector( '.popup-container.inactive' )
+            let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+            if ( name.length < 3 ) {
+
+                popupContainer.style.display = 'flex'
+                popupContainer.querySelector( '.text' ).innerText = 'Please  fill name field properly'
+                return false
+
+            } else if ( !regex.test( email ) ) {
+
+                popupContainer.style.display = 'flex'
+                popupContainer.querySelector( '.text' ).innerText = 'please fill email field properly'
+                return false
+
+            } else if ( number.length != 12 ) {
+
+                popupContainer.style.display = 'flex'
+                popupContainer.querySelector( '.text' ).innerText = 'Please fill phone  number  properly'
+                return false
+
+            } else if ( academy_joining_date.value.length != 10 ) {
+
+                popupContainer.style.display = 'flex'
+                popupContainer.querySelector( '.text' ).innerText = 'please fill academic year of joining'
+                return false
+            } else if ( company_joining_date.value.length != 10 ) {
+
+                popupContainer.style.display = 'flex'
+                popupContainer.querySelector( '.text' ).innerText = 'please fill company year of joining'
+                return false
+
+            } else if ( company_name.length < 3 ) {
+
+                popupContainer.style.display = 'flex'
+                popupContainer.querySelector( '.text' ).innerText = 'please fill company name field properly'
+                return false
+
+            } else if ( image.length == 0 ) {
+                console.log( image )
+
+                popupContainer.style.display = 'flex'
+                popupContainer.querySelector( '.text' ).innerText = 'Please upload a image'
+                return false
+            } else if ( image.length != 0 ) {
+
+                let imageExtension = image[ 0 ].type
+
+                if ( imageExtension != 'image/jpeg' && imageExtension != 'image/jpg' && imageExtension != 'image/png' ) {
+
+                    popupContainer.style.display = 'flex'
+                    popupContainer.querySelector( '.text' ).innerText = 'Please upload a image whose extension is jpg or jpeg or png'
+                    return false
+
+                }
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>

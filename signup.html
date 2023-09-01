@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- own css file link  -->
+    <link rel="stylesheet" href="./css/form.css">
+    <title>signup</title>
+</head>
+
+<body>
+
+    <div class="popup-container inactive">
+        <div class="popup">
+            <p class="text">
+
+            </p>
+            <button type="button" class="cancel">close</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <form class="form" action="/signup" method="post">
+            <div class="image">
+                <img src="./images/user-img.png">
+                <h3 class="heading">Sign up Here</h3>
+            </div>
+            <div class="input">
+                <input type="text" name="name" placeholder="username">
+            </div>
+            <div class="input">
+                <input type="email" name="email" placeholder="email">
+            </div>
+            <div class="input">
+                <input type="number" name="number" placeholder="phone number">
+            </div>
+            <div class="input">
+                <input type="password" name="password" autocomplete="off" placeholder="password">
+            </div>
+            <div class="input">
+                <input type="password" name="confirm-password" placeholder="Confirm password">
+            </div>
+            <div class="link">
+                Already have an account ? <a href="signin.html">Signin</a>
+            </div>
+            <input type="submit" value="signup">
+        </form>
+    </div>
+    <script src="./js/form.js"></script>
+    <script>
+        const form = document.querySelector( '.form' )
+        form.onsubmit = ( e ) => {
+
+            const name = form.querySelector( 'input[name=name]' ).value.trim()
+            const email = form.querySelector( 'input[name=email]' ).value.trim()
+            const number = form.querySelector( 'input[name=number]' ).value.trim()
+            const password = form.querySelector( 'input[name=password]' ).value.trim()
+            const confirmPassword = form.querySelector( 'input[name=confirm-password]' ).value.trim()
+            const popupContainer = document.querySelector( '.popup-container.inactive' )
+
+            let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+            if ( name.length < 3 ) {
+
+                popupContainer.style.display = 'flex'
+                popupContainer.querySelector( '.text' ).innerText = 'Please  fill name field properly'
+                return false
+
+            } else if ( !regex.test( email ) ) {
+
+                popupContainer.style.display = 'flex'
+                popupContainer.querySelector( '.text' ).innerText = 'please fill email field properly'
+                return false
+
+            } else if ( number.length != 12 ) {
+
+                popupContainer.style.display = 'flex'
+                popupContainer.querySelector( '.text' ).innerText = 'Please fill phone  number  properly'
+                return false
+
+            } else if ( password.length < 4 ) {
+
+                popupContainer.style.display = 'flex'
+                popupContainer.querySelector( '.text' ).innerText = 'Please fill password properly (must password have minimum length 5)'
+                return false
+
+            } else if ( confirmPassword != password ) {
+                popupContainer.style.display = 'flex'
+                popupContainer.querySelector( '.text' ).innerText = 'Password and confirm password are not matched'
+                return false
+            }
+        }
+    </script>
+</body>
+
+</html>
